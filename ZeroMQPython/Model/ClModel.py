@@ -2,7 +2,7 @@ import zmq
 import json
 
 
-class clsModel:
+class ClModel:
     def __init__(self,
                  port=9090,
                  bypass=False):

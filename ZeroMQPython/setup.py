@@ -3,7 +3,7 @@ import sys
 
 buildOptions = dict(packages=["Model.clsModel"])
 
-exe = [Executable("Example.py")]  # 2
+exe = [Executable("dolphinCLI.py")]  # 2
 
 # 3
 setup(
