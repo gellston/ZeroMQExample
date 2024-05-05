@@ -1,39 +1,49 @@
-#! /usr/bin/env python
-import sys
-import zmq
+
+from time import sleep
+
+from Model.clsModel import clsModel
+
+
+clsModoelFactory = dict()
+clsModoelFactory["test"] = clsModel
 
 
 
+template = clsModoelFactory["test"]
+model = template(port=9090,
+                 bypass=False)
 
 
 
-####################################
-# Open Port
-####################################
-port = "8080"
-if len(sys.argv) > 1:
-    port = sys.argv[1]
-    int(port)
-
-####################################
-# Socket to talk to server
-####################################
-context = zmq.Context()
-socket = context.socket(zmq.SUB)
-print("Collecting updates from server...")
-socket.connect("tcp://localhost:%s" % port)
-
-####################################
-# Subscribe to temperature
-####################################
-topicfilter = b"test"
-socket.setsockopt(zmq.SUBSCRIBE, topicfilter)
-
-
+#### Hyper Parameter
+total_epoch = 100
+total_batch = 50
+#### Hyper Parameter
 
 ####################################
 # Process
 ####################################
-while True:
-    string = socket.recv()
-    print("%s" % string)
+
+print('train start')
+
+model.updateTotalEpoch(total_epoch)
+for epoch in range(total_epoch):
+    print('current epoch=', epoch)
+    model.updateCurrentEpoch(epoch)
+
+    model.updateTotalBatch(total_batch)
+    for batch in range(total_batch):
+        print('current batch=', batch)
+        model.updateCurrentBatch(batch)
+        sleep(0.05)
+
+    model.updateAvgBatchError(1280)
+
+
+model.trainEnd()
+
+
+
+
+
+
