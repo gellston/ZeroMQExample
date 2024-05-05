@@ -6,3 +6,6 @@
 /ZeroMQSharp/ZeroMQSharp/bin
 /ZeroMQSharp/ZeroMQSharp/obj
 /ZeroMQPython/.idea
+/ZeroMQPython/build/exe.win-amd64-3.11
+/ZeroMQPython/Model/__pycache__
+/ZeroMQSharp/.vs/ProjectEvaluation
