@@ -11,6 +11,6 @@ setup(
     version="1.0",
     author="Hyvision",
     description="Hyvision",
-    options=dict(build_exe = buildOptions),
+    options=dict(build_exe=buildOptions),
     executables=exe
 )

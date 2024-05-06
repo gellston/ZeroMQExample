@@ -55,11 +55,10 @@ class ClModel:
         jsonContent = json.dumps(jsonObject)
         self.socket.send_unicode(jsonContent)
 
-    def train(self):
+    def train(self,
+              group:str="",
+              out:str=""):
         raise NotImplementedError()
-
-    def test_debug(self, test):
-        self.socket.send_unicode(test)
 
 
 

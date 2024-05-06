@@ -1,5 +1,7 @@
 import typer
 
+from ModelGenerator import ModelGenerator
+
 app = typer.Typer(add_completion=False, help="dolphin deep learning framework CLI")
 
 @app.command(short_help="dl training command",
@@ -13,14 +15,10 @@ def train(type:str="",
           group:str="",
           out:str=""):
 
-    print(f"type : {type}")
-    print(f"name : {name}")
-    print(f"mode : {mode}")
-    print(f"hyper : {hyper}")
-    print(f"zmq : {zmq}")
-    print(f"db : {db}")
-    print(f"group : {group}")
-    print(f"out : {out}")
+    generator = ModelGenerator(zmq=zmq, db=db)
+    model = generator.generate(type=type, name=name, mode=mode, hyper=hyper)
+    model.train(group, out)
+
 
 
 @app.command(short_help="onnx convert command",
@@ -40,6 +38,10 @@ def onnx(name:str="",
 
 if __name__ == "__main__":
     app()
+
+
+
+
 """
 clsModoelFactory = dict()
 clsModoelFactory["test"] = clsModel
